@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: notes-app
-          image: prath999/notes-app:latest # Jenkins will update this
+          image: prath999/notes-app:latest
           ports:
             - containerPort: 3000
           env:
             - name: DB_HOST
-              value: "mysql" # Matches the MySQL service name above
+              value: "mysql"
             - name: DB_USER
               value: "root"
             - name: DB_PASSWORD
