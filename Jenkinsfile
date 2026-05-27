@@ -43,8 +43,8 @@ pipeline {
                     
                     echo "Applying Kubernetes Manifests..."
                     // FIXED: Using single quotes to prevent secret interpolation warning
-                    sh './kubectl --kubeconfig=$KUBECONFIG_FILE apply -f k8s/mysql.yaml'
-                    sh './kubectl --kubeconfig=$KUBECONFIG_FILE apply -f k8s/app.yaml'
+                    sh './kubectl --kubeconfig=$KUBECONFIG_FILE apply -f K8s/mysql.yaml'
+                    sh './kubectl --kubeconfig=$KUBECONFIG_FILE apply -f K8s/app.yaml'
                     
                     echo "Updating App to new image version..."
                     // Using double quotes here because we NEED Groovy to inject the dynamic BUILD_NUMBER
