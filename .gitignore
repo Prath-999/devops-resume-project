@@ -3,5 +3,8 @@
 *.tfstate
 *.tfstate.backup
 
-# Keys
+# Secrets
 *.pem
+
+# Node
+node_modules/
