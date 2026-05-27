@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notes-app
+  template:
+    metadata:
+      labels:
+        app: notes-app
+    spec:
+      containers:
+        - name: notes-app
+          image: prath999/notes-app:latest # Jenkins will update this
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: "mysql" # Matches the MySQL service name above
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              value: "password"
+            - name: DB_NAME
+              value: "notes_db"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notes-app-service
+spec:
+  type: NodePort
+  selector:
+    app: notes-app
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 30007
