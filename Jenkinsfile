@@ -13,7 +13,7 @@ pipeline {
                 script {
                     echo "Building Docker Image..."
                     // We tag it with the Jenkins build number for version control, and 'latest'
-                    sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_NUMBER} -t ${DOCKER_IMAGE}:latest ./notes-app"
+                    sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_NUMBER} -t ${DOCKER_IMAGE}:latest ./"
                 }
             }
         }
